@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+dvdarchiver/
+ENV/
+
+# Environment variables
+.env
+
+# macOS
+.DS_Store
+._*
+~
+
+# DVD Archive outputs (don't commit disc images/archives)
+/DVD_Archive/
