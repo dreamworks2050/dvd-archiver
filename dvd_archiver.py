@@ -205,30 +205,56 @@ def save_archive_json(data: Dict) -> None:
 
 
 def load_copy_state() -> Dict:
-    """Load copy mode state from JSON"""
+    """Load copy mode state from JSON
+
+    Migrates from old format (processed_folders, processed_discs) to new format (processed_files)
+    for consistency with actual usage.
+    """
     if COPY_STATE_JSON.exists():
         with open(COPY_STATE_JSON, "r") as f:
             try:
                 data = json.load(f)
+
                 # Migrate old format to new format if needed
-                if "processed_folders" in data and "processed_discs" not in data:
-                    # Old format - convert to new
-                    return {
-                        "processed_discs": {},
+                if "processed_folders" in data or "processed_discs" in data:
+                    # Old format detected - migrate to new unified format
+                    migrated_data = {
+                        "processed_files": {},
                         "folder_metadata": {},
                         "path_statistics": {},
                         "last_updated": data.get("last_updated", datetime.now(timezone.utc).isoformat())
                     }
+
+                    # Migrate processed_discs to processed_files (if exists)
+                    if "processed_discs" in data:
+                        migrated_data["processed_files"] = data["processed_discs"]
+
+                    # Preserve folder_metadata and path_statistics
+                    if "folder_metadata" in data:
+                        migrated_data["folder_metadata"] = data["folder_metadata"]
+                    if "path_statistics" in data:
+                        migrated_data["path_statistics"] = data["path_statistics"]
+
+                    return migrated_data
+
+                # Already in new format or has processed_files
+                if "processed_files" not in data:
+                    data["processed_files"] = {}
+                if "folder_metadata" not in data:
+                    data["folder_metadata"] = {}
+                if "path_statistics" not in data:
+                    data["path_statistics"] = {}
+
                 return data
             except Exception:
                 return {
-                    "processed_discs": {},
+                    "processed_files": {},
                     "folder_metadata": {},
                     "path_statistics": {},
                     "last_updated": datetime.now(timezone.utc).isoformat()
                 }
     return {
-        "processed_discs": {},
+        "processed_files": {},
         "folder_metadata": {},
         "path_statistics": {},
         "last_updated": datetime.now(timezone.utc).isoformat()
@@ -263,7 +289,7 @@ def is_disc_completed(state: Dict, target_filename: str, source_path: str = None
         return normalized_stem + ext.lower()
 
     # Check exact match first
-    disc_data = state.get("processed_discs", {}).get(target_filename)
+    disc_data = state.get("processed_files", {}).get(target_filename)
     if disc_data and disc_data.get("all_steps_completed", False):
         # Verify the file actually exists on disk
         target_path = disc_data.get("target_path")
@@ -278,9 +304,9 @@ def is_disc_completed(state: Dict, target_filename: str, source_path: str = None
 
     # Check normalized match
     normalized_target = normalize_filename(target_filename)
-    for existing_filename in state.get("processed_discs", {}).keys():
+    for existing_filename in state.get("processed_files", {}).keys():
         if normalize_filename(existing_filename) == normalized_target:
-            disc_data = state["processed_discs"][existing_filename]
+            disc_data = state["processed_files"][existing_filename]
             if disc_data.get("all_steps_completed", False):
                 # Verify the file actually exists on disk
                 target_path = disc_data.get("target_path")
@@ -298,11 +324,16 @@ def is_disc_completed(state: Dict, target_filename: str, source_path: str = None
 
 def mark_disc_completed(state: Dict, target_filename: str, source_path: str, target_path: str,
                         folder_number: str, folder_title: str, checksum: str, parity_path: str):
-    """Mark a disc as successfully processed"""
-    if "processed_discs" not in state:
-        state["processed_discs"] = {}
+    """Mark a disc as successfully processed
 
-    state["processed_discs"][target_filename] = {
+    This function OVERWRITES any existing entry for the same target_filename,
+    ensuring that re-processed files update all stored values including checksums.
+    """
+    if "processed_files" not in state:
+        state["processed_files"] = {}
+
+    # Overwrite existing entry (if any) with new values
+    state["processed_files"][target_filename] = {
         "source_path": str(source_path),
         "target_path": str(target_path),
         "folder_number": folder_number,
@@ -391,17 +422,17 @@ def update_path_statistics(state: Dict, source_path: str, success: bool, discs_c
 
 def clear_folder_state(state: Dict, folder_number: str):
     """Clear all disc state for a folder number (used when retrying after failure)"""
-    if "processed_discs" not in state:
+    if "processed_files" not in state:
         return
 
     # Remove all discs belonging to this folder number
     keys_to_remove = [
-        key for key, value in state["processed_discs"].items()
+        key for key, value in state["processed_files"].items()
         if value.get("folder_number") == folder_number
     ]
 
     for key in keys_to_remove:
-        del state["processed_discs"][key]
+        del state["processed_files"][key]
 
 
 def run_cmd(cmd: str, check: bool = False, capture: bool = True, env: Optional[Dict[str, str]] = None, cwd: Optional[str] = None) -> Tuple[int, str, str]:
@@ -1716,7 +1747,7 @@ def copy_mode_main(process_all: bool = False, convert_mdx: bool = False, start_f
 
         # Clear all discs belonging to folders >= start_from_padded
         discs_to_remove = []
-        for disc_filename, disc_data in state.get("processed_discs", {}).items():
+        for disc_filename, disc_data in state.get("processed_files", {}).items():
             folder_num = disc_data.get("folder_number", "")
             if folder_num >= start_from_padded:
                 discs_to_remove.append(disc_filename)
@@ -1733,7 +1764,7 @@ def copy_mode_main(process_all: bool = False, convert_mdx: bool = False, start_f
 
         # Remove from state
         for disc_filename in discs_to_remove:
-            del state["processed_discs"][disc_filename]
+            del state["processed_files"][disc_filename]
 
         # Clear folder metadata for folders >= start_from_padded
         folders_to_remove = [f for f in state.get("folder_metadata", {}).keys() if f >= start_from_padded]
@@ -1756,7 +1787,7 @@ def copy_mode_main(process_all: bool = False, convert_mdx: bool = False, start_f
         save_copy_state(state)
         safe_print(f"[green]Cleared {len(discs_to_remove)} disc(s) from state[/green]")
 
-    processed_discs_count = len(state.get("processed_discs", {}))
+    processed_discs_count = len(state.get("processed_files", {}))
     if processed_discs_count > 0:
         safe_print(f"[yellow]Found {processed_discs_count} previously processed disc(s).[/yellow]")
         if not process_all:

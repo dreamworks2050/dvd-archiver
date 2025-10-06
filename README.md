@@ -515,6 +515,9 @@ Comprehensive operation history including:
 - Retry tracking and error history
 
 **Example copy_state.json structure:**
+
+*Note: Checksums are stored for all files and will be overwritten if folders are re-processed.*
+
 ```json
 {
   "processed_files": {
@@ -646,6 +649,29 @@ shasum -a 256 -c disc_042.iso.sha256
 $expected = (Get-Content disc_042.iso.sha256).Split()[0]
 $actual = (Get-FileHash disc_042.iso -Algorithm SHA256).Hash
 if ($expected -eq $actual) { "✓ Checksum valid" } else { "✗ Checksum mismatch" }
+
+# Verify all files from copy_state.json (PowerShell)
+$state = Get-Content copy_state.json | ConvertFrom-Json
+foreach ($file in $state.processed_files.PSObject.Properties) {
+    $checksum = $file.Value.checksum
+    $path = $file.Value.target_path
+    $actual = (Get-FileHash $path -Algorithm SHA256).Hash.ToLower()
+    if ($checksum -eq $actual) {
+        Write-Host "✓ $($file.Name)" -ForegroundColor Green
+    } else {
+        Write-Host "✗ $($file.Name) - MISMATCH!" -ForegroundColor Red
+    }
+}
+
+# Verify all files from copy_state.json (Bash)
+jq -r '.processed_files | to_entries[] | "\(.value.checksum)  \(.value.target_path)"' copy_state.json | while read hash path; do
+    actual=$(shasum -a 256 "$path" | cut -d' ' -f1)
+    if [ "$hash" = "$actual" ]; then
+        echo "✓ $(basename "$path")"
+    else
+        echo "✗ $(basename "$path") - MISMATCH!"
+    fi
+done
 
 # Check parity file status
 dvdisaster -t disc_042.iso
