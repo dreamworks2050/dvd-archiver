@@ -4,7 +4,9 @@
       "Bash(git config user.email \"user@example.com\")",
       "Bash(git config user.name \"DVD Archiver User\")",
       "Bash(git config:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []
