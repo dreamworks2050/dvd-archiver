@@ -1,0 +1,162 @@
+{
+  "processed_discs": {
+    "0334.cdr": {
+      "source_path": "E:\\SM_DVDS\\334 - Seek You First the Kingdom of God\\334.cdr",
+      "target_path": "I:\\0334_Seek_You_First_the_Kingdom_of_God\\0334.cdr",
+      "folder_number": "0334",
+      "folder_title": "Seek_You_First_the_Kingdom_of_God",
+      "checksum": "aa8a51d706df93724daef6a538d8e6a4a15e81d9ff04d363822bd6a65f8e7df9",
+      "parity_path": "I:\\0334_Seek_You_First_the_Kingdom_of_God\\0334.cdr.ecc",
+      "all_steps_completed": true,
+      "timestamp": "2025-10-06T07:49:20.120982+00:00"
+    },
+    "0389.cdr": {
+      "source_path": "E:\\SM_DVDS\\389 - Songs and Compositions of the SMCH\\389_MTV.cdr",
+      "target_path": "I:\\0389_Songs_and_Compositions_of_the_SMCH\\0389.cdr",
+      "folder_number": "0389",
+      "folder_title": "Songs_and_Compositions_of_the_SMCH",
+      "checksum": "2cc7434768e232f7705fd0190d505cd2ba9ca84b3b545dc791edd3a39d6284c2",
+      "parity_path": "I:\\0389_Songs_and_Compositions_of_the_SMCH\\0389.cdr.ecc",
+      "all_steps_completed": true,
+      "timestamp": "2025-10-06T07:34:57.573152+00:00"
+    },
+    "0488.cdr": {
+      "source_path": "E:\\SM_DVDS\\488 - A King with a Lot of Desires\\488_E1.cdr",
+      "target_path": "I:\\0488_A_King_with_a_Lot_of_Desires\\0488.cdr",
+      "folder_number": "0488",
+      "folder_title": "A_King_with_a_Lot_of_Desires",
+      "checksum": "66fea90c7122794709610682bb6317e4c57cfecf280b4743d10c14c527937b64",
+      "parity_path": "I:\\0488_A_King_with_a_Lot_of_Desires\\0488.cdr.ecc",
+      "all_steps_completed": true,
+      "timestamp": "2025-10-06T07:35:35.007657+00:00"
+    },
+    "0644.cdr": {
+      "source_path": "E:\\SM_DVDS\\644 - In Silence We Know God\\644.cdr",
+      "target_path": "I:\\0644_In_Silence_We_Know_God\\0644.cdr",
+      "folder_number": "0644",
+      "folder_title": "In_Silence_We_Know_God",
+      "checksum": "d46c000452b3a85c744d731b282fe7a78538fba4da1a6cb468659afd23669a81",
+      "parity_path": "I:\\0644_In_Silence_We_Know_God\\0644.cdr.ecc",
+      "all_steps_completed": true,
+      "timestamp": "2025-10-06T07:51:19.933211+00:00"
+    },
+    "0675.cdr": {
+      "source_path": "E:\\SM_DVDS\\675 - Sharing Songs Over A Warm Fire\\675.cdr",
+      "target_path": "I:\\0675_Sharing_Songs_Over_A_Warm_Fire\\0675.cdr",
+      "folder_number": "0675",
+      "folder_title": "Sharing_Songs_Over_A_Warm_Fire",
+      "checksum": "a3e69e505e8c9e7e3bbc916ec7f89b6c41a6a72e38abd8aa665e3a6a7666757b",
+      "parity_path": "I:\\0675_Sharing_Songs_Over_A_Warm_Fire\\0675.cdr.ecc",
+      "all_steps_completed": true,
+      "timestamp": "2025-10-06T07:52:07.427263+00:00"
+    },
+    "0694.cdr": {
+      "source_path": "E:\\SM_DVDS\\694 - Life Continues Forever\\694.cdr",
+      "target_path": "I:\\0694_Life_Continues_Forever\\0694.cdr",
+      "folder_number": "0694",
+      "folder_title": "Life_Continues_Forever",
+      "checksum": "12e2073ba64e92a72c1ee210b35b0bc50b038c0202a1189fb064cd3621d20adb",
+      "parity_path": "I:\\0694_Life_Continues_Forever\\0694.cdr.ecc",
+      "all_steps_completed": true,
+      "timestamp": "2025-10-06T07:52:52.802164+00:00"
+    },
+    "0696.iso": {
+      "source_path": "E:\\SM_DVDS\\696 - Freedom Beyond the Body and Mind\\696.mdx",
+      "target_path": "I:\\0696_Freedom_Beyond_the_Body_and_Mind\\0696.iso",
+      "folder_number": "0696",
+      "folder_title": "Freedom_Beyond_the_Body_and_Mind",
+      "checksum": "bbaf01fc7c49e465051c3e23c71ac52e6428c780be456e35dcaebce054dd409d",
+      "parity_path": "I:\\0696_Freedom_Beyond_the_Body_and_Mind\\0696.iso.ecc",
+      "all_steps_completed": true,
+      "timestamp": "2025-10-06T07:54:02.535492+00:00"
+    },
+    "0700.iso": {
+      "source_path": "E:\\SM_DVDS\\700 - The Living Saints\uf028\\700.mdx",
+      "target_path": "I:\\0700_The_Living_Saints\uf028\\0700.iso",
+      "folder_number": "0700",
+      "folder_title": "The_Living_Saints\uf028",
+      "checksum": "c05df49e672ecdaf16755dc81e8d2feafcf5d0ef5110462f254b09bf43a6012d",
+      "parity_path": "",
+      "all_steps_completed": true,
+      "timestamp": "2025-10-06T07:39:49.031469+00:00"
+    },
+    "0389_MTV.cdr": {
+      "source_path": "E:\\SM_DVDS\\389 - Songs and Compositions of the SMCH\\389_MTV.cdr",
+      "target_path": "I:\\0389_Songs_and_Compositions_of_the_SMCH\\0389_MTV.cdr",
+      "folder_number": "0389",
+      "folder_title": "Songs_and_Compositions_of_the_SMCH",
+      "checksum": "2cc7434768e232f7705fd0190d505cd2ba9ca84b3b545dc791edd3a39d6284c2",
+      "parity_path": "I:\\0389_Songs_and_Compositions_of_the_SMCH\\0389_MTV.cdr.ecc",
+      "all_steps_completed": true,
+      "timestamp": "2025-10-06T07:49:58.535205+00:00"
+    },
+    "0488_E1.cdr": {
+      "source_path": "E:\\SM_DVDS\\488 - A King with a Lot of Desires\\488_E1.cdr",
+      "target_path": "I:\\0488_A_King_with_a_Lot_of_Desires\\0488_E1.cdr",
+      "folder_number": "0488",
+      "folder_title": "A_King_with_a_Lot_of_Desires",
+      "checksum": "66fea90c7122794709610682bb6317e4c57cfecf280b4743d10c14c527937b64",
+      "parity_path": "I:\\0488_A_King_with_a_Lot_of_Desires\\0488_E1.cdr.ecc",
+      "all_steps_completed": true,
+      "timestamp": "2025-10-06T07:50:33.158765+00:00"
+    }
+  },
+  "folder_metadata": {
+    "0334": {
+      "title": "Seek_You_First_the_Kingdom_of_God",
+      "retry_count": 0,
+      "last_error": null,
+      "status": "completed"
+    },
+    "0389": {
+      "title": "Songs_and_Compositions_of_the_SMCH",
+      "retry_count": 0,
+      "last_error": null,
+      "status": "completed"
+    },
+    "0488": {
+      "title": "A_King_with_a_Lot_of_Desires",
+      "retry_count": 0,
+      "last_error": null,
+      "status": "completed"
+    },
+    "0644": {
+      "title": "In_Silence_We_Know_God",
+      "retry_count": 0,
+      "last_error": null,
+      "status": "completed"
+    },
+    "0675": {
+      "title": "Sharing_Songs_Over_A_Warm_Fire",
+      "retry_count": 0,
+      "last_error": null,
+      "status": "completed"
+    },
+    "0694": {
+      "title": "Life_Continues_Forever",
+      "retry_count": 0,
+      "last_error": null,
+      "status": "completed"
+    },
+    "0696": {
+      "title": "Freedom_Beyond_the_Body_and_Mind",
+      "retry_count": 0,
+      "last_error": null,
+      "status": "completed"
+    },
+    "0700": {
+      "title": "The_Living_Saints\uf028",
+      "retry_count": 0,
+      "last_error": null,
+      "status": "completed"
+    }
+  },
+  "path_statistics": {
+    "E:\\SM_DVDS": {
+      "folders_processed": 15,
+      "folders_failed": 0,
+      "discs_processed": 15
+    }
+  },
+  "last_updated": "2025-10-06T07:54:02.535509+00:00"
+}
